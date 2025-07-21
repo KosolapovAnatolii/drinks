@@ -1,0 +1,1 @@
+import{Q as r}from"./QPage-jjgH5K-x.js";import{_ as t}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{m as a,n as o,p as s,aL as n}from"./index-D5lpR9br.js";const c={};function f(m,e){return a(),o(r,{class:"flex flex-center"},{default:s(()=>e[0]||(e[0]=[n(" Brandy ")])),_:1})}const p=t(c,[["render",f]]);export{p as default};

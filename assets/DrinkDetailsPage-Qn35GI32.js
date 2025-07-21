@@ -1,0 +1,1 @@
+import{Q as s}from"./QPage-jjgH5K-x.js";import{aN as r,m as n,n as o,p as l,t,aM as u,l as p}from"./index-D5lpR9br.js";const _={__name:"DrinkDetailsPage",setup(c){const a=r().params.slug;return(f,e)=>(n(),o(s,{class:"flex flex-center"},{default:l(()=>[e[0]||(e[0]=t("h1",null,"Current Drink Page",-1)),t("p",null,u(p(a)||"no slug detected"),1)]),_:1}))}};export{_ as default};
