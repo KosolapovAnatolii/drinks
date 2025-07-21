@@ -1,1 +1,18 @@
 // app global css in SCSS form
+@import './mixins.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 160%;
+
+  color: $main-black;
+  background-color: $white;
+  scroll-behavior: smooth;
+}

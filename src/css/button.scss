@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 8px;
+  border: none;
+  background-color: $white;
+
+  // font-family: 'Raleway';
+  font-size: 18px;
+  line-height: 160%;
+}
+
+.menu-button {
+  @extend .button;
+  padding: 24px;
+}
+
+.flat-button {
+  @extend .button;
+  padding: 8px 32px;
+}

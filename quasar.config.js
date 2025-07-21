@@ -19,7 +19,9 @@ export default defineConfig((ctx) => {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: [
-      'app.scss'
+      'mixins.scss',
+      'app.scss',
+      'button.scss',
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
@@ -43,7 +45,7 @@ export default defineConfig((ctx) => {
         node: 'node20'
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -61,7 +63,7 @@ export default defineConfig((ctx) => {
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
-      
+
       vitePlugins: [
         ['@intlify/unplugin-vue-i18n/vite', {
           // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
@@ -107,7 +109,7 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Dialog']
     },
 
     // animations: 'all', // --- includes all animations
