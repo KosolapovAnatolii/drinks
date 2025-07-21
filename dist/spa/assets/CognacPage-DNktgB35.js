@@ -1,0 +1,1 @@
+import{Q as t}from"./QPage-Dn0-khzQ.js";import{_ as a}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{m as o,n as r,p as s,aL as c}from"./index-Cluau6P8.js";const n={};function f(m,e){return o(),r(t,{class:"flex flex-center"},{default:s(()=>e[0]||(e[0]=[c(" Cognac ")])),_:1})}const x=a(n,[["render",f]]);export{x as default};
