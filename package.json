@@ -12,6 +12,7 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "postinstall": "quasar prepare",
+    "start": "quasar serve dist/spa",
     "deploy": "gh-pages -d dist/spa"
   },
   "dependencies": {
