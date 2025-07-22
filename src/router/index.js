@@ -1,5 +1,10 @@
 import { defineRouter } from '#q-app/wrappers'
-import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
+import {
+  createRouter,
+  // createMemoryHistory,
+  // createWebHistory,
+  createWebHashHistory
+} from 'vue-router'
 import routes from './routes'
 import { useUserStore } from 'stores/user-store'
 
