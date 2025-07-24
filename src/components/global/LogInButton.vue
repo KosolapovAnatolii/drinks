@@ -1,10 +1,10 @@
 <script setup>
 import { useUserStore } from 'stores/user-store'
 import { useQuasar } from 'quasar'
-import { useCastomLinks } from 'src/composables/useLink'
+import { useCustomLinks } from 'src/composables/useLink'
 
 const userStore = useUserStore();
-const { goToPage } = useCastomLinks();
+const { goToPage } = useCustomLinks();
 const isLoggedIn = userStore.isAutorised;
 
 const $q = useQuasar();

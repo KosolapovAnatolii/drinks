@@ -1,6 +1,6 @@
 import { useRouter } from 'vue-router'
 
-export function useCastomLinks() {
+export function useCustomLinks() {
   const router = useRouter()
 
   function getCurrentRoute() {
