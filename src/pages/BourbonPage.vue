@@ -19,7 +19,6 @@ const isLoading = ref(false);
 
 async function registerUser() {
   isLoading.value = true;
-  console.log('sending...')
   try {
     const response = await fetch('https://drinks-backend-x4zi.onrender.com/api/auth/register', {
       method: 'POST',
@@ -34,7 +33,6 @@ async function registerUser() {
     });
 
     const data = await response.json();
-    console.log('📨 Response from server:', data);
 
     if (!response.ok) {
       console.error('❌ Registration failed:', data.error);
@@ -45,25 +43,4 @@ async function registerUser() {
 
   isLoading.value = false;
 }
-
-// async function sendData() {
-//   isLoading.value = true;
-//   try {
-//     const response = await fetch('https://drinks-backend-x4zi.onrender.com/api/auth/test', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       credentials: 'include',
-//       body: JSON.stringify({ msg: 'Привіт з фронта!' })
-//     });
-
-//     const data = await response.json();
-//     console.log('✅ Відповідь:', data);
-//   } catch (err) {
-//     console.error('❌ Помилка:', err);
-//   }
-
-//   isLoading.value = false;
-// }
 </script>

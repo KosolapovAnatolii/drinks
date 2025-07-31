@@ -23,12 +23,10 @@ export const useUserStore = defineStore('counter', {
     },
     checkAuth() {
       const token = localStorage.getItem('auth_token');
-      console.log('token from localstorage', token)
       if (token) {
-        this.isAuthorized = true;
+        this.isAutorised = true;
         this.userToken = token;
       }
-      console.log('this.isAuthorized', this.isAuthorized)
     }
   }
 })

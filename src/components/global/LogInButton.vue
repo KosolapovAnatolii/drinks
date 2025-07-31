@@ -15,14 +15,9 @@ function showConfirm() {
     cancel: true,
     persistent: false
   }).onOk(() => {
-    // TODO: add logut logic
     userStore.logOut()
-    goToPage('home')
+    goToPage('auth')
   })
-  // .onCancel(() => {
-
-  // }).onDismiss(() => {
-  // })
 }
 
 </script>

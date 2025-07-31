@@ -1,4 +1,4 @@
-# quasar-cars (car-shop)
+# Drinks
 
 A Quasar Project
 
