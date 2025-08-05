@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useValidationRules } from 'src/composables/useValidation'
-// TODO: finish form (finish add photo logic)
+import { createDrink } from 'src/api/drinksApi'
 const { requireFieldRule, validRaitingMark, validFileSize } = useValidationRules()
 
 const props = defineProps({
@@ -37,8 +37,8 @@ const drinkData = ref({
 })
 
 function handleSubmit() {
-  // TODO: add submit logic
   console.log(drinkData.value)
+  createDrink(drinkData.value)
   closeDialog()
 }
 </script>

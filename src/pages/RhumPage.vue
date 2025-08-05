@@ -1,8 +1,9 @@
+<script setup>
+import DrinkPage from 'src/components/global/DrinkPage.vue';
+</script>
+
 <template>
-  <q-page class="flex flex-center">
-    Rhum
+  <q-page class="q-pa-md">
+    <DrinkPage drinkCategory="rhum" />
   </q-page>
 </template>
-
-<script setup>
-</script>

@@ -1,6 +1,6 @@
 <script setup>
 const columns = [
-  { name: 'img', label: 'Photo', field: 'img', required: false },
+  { name: 'img', label: 'Photo', field: 'img', required: false, align: 'center' },
   {
     name: 'name',
     required: true,
@@ -35,12 +35,12 @@ defineProps({
       <template #body-cell-img="props">
         <q-td :props="props">
           <img
-            v-if="props.row.img"
-            :src="props.row.img"
+            v-if="props.row.photo"
+            :src="props.row.photo"
             :alt="props.row.label"
             class="image"
           />
-          <q-icon v-else name="image_not_supported" color="grey" />
+          <q-icon v-else name="local_bar" color="grey" size="32px" />
         </q-td>
       </template>
       <template #body-cell-name="props">

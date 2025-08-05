@@ -1,11 +1,9 @@
-// TODO: check all this file, it isn't finished
-import axios from 'axios';
+import axiosInstance from './axiosInstance'
+import { uploadImage } from './cloudinaryApi';
 
-const BASE_URL = 'https://drinks-backend-x4zi.onrender.com/api/drinks';
-
-export const fetchAllDrinks = async (category) => {
+export const getAllDrinks = async (category) => {
   try {
-    const response = await axios.get(`${BASE_URL}?category=${category}`);
+    const response = await axiosInstance.get(`/drinks?category=${category}`);
     return response.data;
   } catch (error) {
     console.error('Fetching drinks was failed:', error);
@@ -13,9 +11,9 @@ export const fetchAllDrinks = async (category) => {
   }
 };
 
-export const fetchDrinkById = async (id) => {
+export const getDrinkById = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/${id}`);
+    const response = await axiosInstance.get(`/drinks/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Failed fetching drink with id=${id}:`, error);
@@ -24,8 +22,17 @@ export const fetchDrinkById = async (id) => {
 };
 
 export const createDrink = async (drinkData) => {
+  if (drinkData.photo) {
+    try {
+      const imageUrl = await uploadImage(drinkData.photo)
+      drinkData.photo = imageUrl;
+    } catch (error) {
+      console.error('Error uplodaing photo', error);
+    }
+  }
+
   try {
-    const response = await axios.post(`${BASE_URL}`, drinkData);
+    const response = await axiosInstance.post(`/drinks`, drinkData);
     return response.data;
   } catch (error) {
     console.error('Creating drink was failed:', error);
@@ -35,7 +42,7 @@ export const createDrink = async (drinkData) => {
 
 export const deleteDrink = async (id) => {
   try {
-    const response = await axios.delete(`${BASE_URL}/${id}`);
+    const response = await axiosInstance.delete(`/drinks/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Failed deleting drink with id=${id}:`, error);
