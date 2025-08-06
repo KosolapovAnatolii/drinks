@@ -1,9 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { registerUser, loginUser } from 'src/api/authApi'
 import { useUserStore } from 'stores/user-store'
 import { useCustomLinks } from 'src/composables/useLink'
 
+const { t } = useI18n()
 const userStore = useUserStore();
 const { goToPage } = useCustomLinks();
 
@@ -46,13 +48,15 @@ async function handleSubmit() {
   }
 }
 
-const toggleBtnLabel = computed(() => isLogin.value ? 'Switch to Register' : 'Switch to Login')
+const toggleBtnLabel = computed(() => isLogin.value ? t('auth_form.switch_register') : t('auth_form.switch_login'))
 </script>
 
 <template>
   <q-card class="q-pa-md">
     <q-card-section>
-      <div class="text-h6 text-center">{{ isLogin ? 'Login' : 'Register' }}</div>
+      <div class="text-h6 text-center">
+        {{ isLogin ? t('auth_form.login') : t('auth_form.register') }}
+      </div>
     </q-card-section>
 
     <q-form @submit.prevent="handleSubmit">
@@ -61,14 +65,14 @@ const toggleBtnLabel = computed(() => isLogin.value ? 'Switch to Register' : 'Sw
           filled
           v-model="userData.email"
           type="email"
-          label="Email"
+          :label="t('auth_form.email')"
           required
         />
         <q-input
           filled
           v-model="userData.password"
           type="password"
-          label="Password"
+          :label="t('auth_form.password')"
           required
         />
       </q-card-section>
@@ -76,7 +80,7 @@ const toggleBtnLabel = computed(() => isLogin.value ? 'Switch to Register' : 'Sw
       <q-card-actions align="between">
         <q-btn
           color="primary"
-          label="Submit"
+          :label="t('buttons.submit')"
           type="submit"
           :loading="isLoading"
         />

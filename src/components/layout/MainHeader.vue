@@ -1,13 +1,10 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
 import LoginButton from 'src/components/global/LogInButton.vue'
 
-const routes = [
-  {path: '/whiskey', label: 'Whiskey'},
-  {path: '/rhum', label: 'Rhum'},
-  {path: '/brandy', label: 'Brandy'},
-  {path: '/cognac', label: 'Cognac'},
-  {path: '/bourbon', label: 'Bourbon'},
-];
+const { t } = useI18n()
+
+const routes = ['whiskey', 'rhum', 'brandy', 'cognac', 'bourbon'];
 </script>
 
 <template>
@@ -22,11 +19,11 @@ const routes = [
     <nav class="q-gutter-sm">
       <q-btn
         v-for="link in routes"
-        :key="link.path"
+        :key="link"
         color="deep-orange"
         glossy
-        :label="link.label"
-        :to="link.path"
+        :label="t(`categories.${link}`)"
+        :to="`/${link}`"
       />
     </nav>
     <LoginButton />

@@ -13,11 +13,10 @@ const pageProps = defineProps({
 })
 
 const rows = ref([]);
-
 const isDialogOpen = ref(false)
+
 function openDialog() {
   isDialogOpen.value = true;
-  console.log('open dialog func', isDialogOpen.value)
 }
 
 onMounted(async () => {

@@ -4,6 +4,7 @@ export const useUserStore = defineStore('counter', {
   state: () => ({
     userToken: null,
     isAutorised: false,
+    lang: 'uk',
   }),
 
   getters: {
@@ -26,6 +27,16 @@ export const useUserStore = defineStore('counter', {
       if (token) {
         this.isAutorised = true;
         this.userToken = token;
+      }
+    },
+    setLang(lang) {
+      this.lang = lang;
+      localStorage.setItem('lang', lang);
+    },
+    checkLang() {
+      const lang = localStorage.getItem('lang');
+      if (lang) {
+        this.lang = lang;
       }
     }
   }

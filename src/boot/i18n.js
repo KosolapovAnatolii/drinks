@@ -1,10 +1,15 @@
 import { defineBoot } from '#q-app/wrappers'
 import { createI18n } from 'vue-i18n'
 import messages from 'src/i18n'
+import { useUserStore } from 'stores/user-store'
 
 export default defineBoot(({ app }) => {
+  const userStore = useUserStore()
+
+  userStore.checkLang()
+
   const i18n = createI18n({
-    locale: 'en-US',
+    locale: userStore.lang || 'en-US',
     globalInjection: true,
     messages
   })

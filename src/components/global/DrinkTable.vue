@@ -1,19 +1,22 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n();
 const columns = [
-  { name: 'img', label: 'Photo', field: 'img', required: false, align: 'center' },
+  { name: 'img', label: t('table_head.photo'), field: 'img', required: false, align: 'center' },
   {
     name: 'name',
     required: true,
-    label: 'Relise name',
+    label: t('table_head.name'),
     align: 'left',
     field: row => row.name,
     format: val => `${val}`,
     sortable: true
   },
-  { name: 'age', align: 'center', label: 'Age (years)', field: 'age', sortable: true },
-  { name: 'strength', align: 'center', label: 'Strength (%)', field: 'strength', sortable: true },
-  { name: 'rating', align: 'center', label: 'Rating', field: 'rating', sortable: true },
-  { name: 'description', align: 'center', label: 'Degustation noutes', field: 'description', sortable: false, style: 'width: 25%', },
+  { name: 'age', align: 'center', label: t('table_head.age'), field: 'age', sortable: true },
+  { name: 'strength', align: 'center', label: t('table_head.strength'), field: 'strength', sortable: true },
+  { name: 'rating', align: 'center', label: t('table_head.rating'), field: 'rating', sortable: true },
+  { name: 'description', align: 'center', label: t('table_head.noutes'), field: 'description', sortable: false, style: 'width: 25%', },
 ]
 
 defineProps({

@@ -1,4 +1,7 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
 </script>
 
 <template>
@@ -8,11 +11,7 @@
       color="grey-4"
       text-color="purple"
       icon="liquor"
-      label="Home"
+      :label="t('header.home')"
     />
   </q-header>
 </template>
-
-<style scoped lang="scss">
-
-</style>

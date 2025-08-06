@@ -1,18 +1,25 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
 import { useUserStore } from 'stores/user-store'
 import { useQuasar } from 'quasar'
 import { useCustomLinks } from 'src/composables/useLink'
 
 const userStore = useUserStore();
 const { goToPage } = useCustomLinks();
-const isLoggedIn = userStore.isAutorised;
-
+const { t } = useI18n();
 const $q = useQuasar();
 
+const isLoggedIn = userStore.isAutorised;
+
 function showConfirm() {
-    $q.dialog({
-    message: 'Are you sure you want to logout?',
-    cancel: true,
+  $q.dialog({
+    message: t('confarm.logout_msg'),
+    ok: {
+      label: t('buttons.ok')
+    },
+    cancel: {
+      label: t('buttons.cancel')
+    },
     persistent: false
   }).onOk(() => {
     userStore.logOut()
@@ -33,7 +40,7 @@ function showConfirm() {
   >
     <q-icon left size="2em" name="exit_to_app" />
     <span>
-      Loguot
+      {{ t('header.logout') }}
     </span>
   </q-btn>
   <q-btn
@@ -50,7 +57,7 @@ function showConfirm() {
       name="person"
     />
     <span>
-      Login
+      {{ t('header.login') }}
     </span>
   </q-btn>
 </template>

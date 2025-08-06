@@ -1,8 +1,11 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
 import { ref, computed } from 'vue'
 import { useValidationRules } from 'src/composables/useValidation'
 import { createDrink } from 'src/api/drinksApi'
-const { requireFieldRule, validRaitingMark, validFileSize } = useValidationRules()
+
+const { requireFieldRule, validRaitingMark, validFileSize } = useValidationRules();
+const { t } = useI18n();
 
 const props = defineProps({
   category: {
@@ -37,7 +40,6 @@ const drinkData = ref({
 })
 
 function handleSubmit() {
-  console.log(drinkData.value)
   createDrink(drinkData.value)
   closeDialog()
 }
@@ -56,7 +58,7 @@ function handleSubmit() {
           <q-file
             color="purple-12"
             v-model="drinkData.photo"
-            label="Add photo"
+            :label="t('drink_form.add_photo')"
             :validate="[validFileSize]"
           >
             <template v-slot:prepend>
@@ -68,7 +70,7 @@ function handleSubmit() {
             filled
             v-model.trim="drinkData.name"
             type="text"
-            label="Title"
+            :label="t('drink_form.title')"
             required
             :validate="[requireFieldRule]"
           />
@@ -77,21 +79,21 @@ function handleSubmit() {
             filled
             v-model="drinkData.age"
             type="number"
-            label="Age (years)"
+            :label="t('drink_form.age')"
           />
 
           <q-input
             filled
             v-model="drinkData.strength"
             type="number"
-            label="Strength(%)"
+            :label="t('drink_form.strength')"
           />
 
           <q-input
             filled
             v-model="drinkData.rating"
             type="number"
-            label="Rating (0-100)"
+            :label="t('drink_form.rating')"
             :rules="[validRaitingMark]"
           />
 
@@ -99,17 +101,18 @@ function handleSubmit() {
             filled
             v-model.trim="drinkData.description"
             type="text"
-            label="Description"
+            :label="t('drink_form.description')"
           />
+
           <q-card-actions align="between">
             <q-btn
               color="primary"
-              label="Submit"
+              :label="t('buttons.submit')"
               type="submit"
             />
             <q-btn
               flat
-              label="Cancel"
+              :label="t('buttons.cancel')"
               @click="closeDialog"
             />
           </q-card-actions>

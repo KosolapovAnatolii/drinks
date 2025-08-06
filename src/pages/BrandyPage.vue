@@ -4,6 +4,6 @@ import DrinkPage from 'src/components/global/DrinkPage.vue';
 
 <template>
   <q-page class="q-pa-md">
-    <DrinkPage drinkCategory="cognac" />
+    <DrinkPage drinkCategory="brandy" />
   </q-page>
 </template>
