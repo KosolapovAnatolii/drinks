@@ -4,6 +4,7 @@ import { getAllDrinks } from 'src/api/drinksApi';
 import DrinkTable from 'src/components/global/DrinkTable.vue';
 import AddDrinkDialog from 'src/components/global/AddDrinkDialog.vue';
 import TopBar from 'src/components/global/TopBar.vue';
+import TableSkeleton from 'src/components/skeletons/TableSkeleton.vue';
 
 const pageProps = defineProps({
   drinkCategory: {
@@ -14,6 +15,7 @@ const pageProps = defineProps({
 
 const rows = ref([]);
 const isDialogOpen = ref(false)
+const isLoading = ref(true)
 
 function openDialog() {
   isDialogOpen.value = true;
@@ -21,10 +23,14 @@ function openDialog() {
 
 onMounted(async () => {
   try {
+    isLoading.value = true;
     const data = await getAllDrinks(pageProps.drinkCategory);
     rows.value = data;
+    isLoading.value = false;
   } catch (error) {
     console.error('Error loading drinks:', error);
+  } finally {
+    isLoading.value = false;
   }
 });
 </script>
@@ -35,7 +41,9 @@ onMounted(async () => {
     @open="openDialog"
   />
 
-  <DrinkTable :rows="rows" />
+  <TableSkeleton v-if="isLoading" />
+
+  <DrinkTable v-else :rows="rows" :isLoading="isLoading" />
 
   <AddDrinkDialog
     :category="drinkCategory"

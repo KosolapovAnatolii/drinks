@@ -23,6 +23,11 @@ defineProps({
   rows: {
     type: Array,
     required: true,
+  },
+  isLoading: {
+    type: Boolean,
+    required: false,
+    default: false,
   }
 })
 
@@ -48,7 +53,7 @@ defineProps({
       </template>
       <template #body-cell-name="props">
         <q-td :props="props">
-          <router-link :to="`/${props.row.category}/${props.row.slug}`">{{ props.row.name }}</router-link>
+          <router-link :to="`/${props.row.category}/${props.row.name}`">{{ props.row.name }}</router-link>
         </q-td>
       </template>
       <template #body-cell-description="props">
