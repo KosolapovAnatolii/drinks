@@ -17,6 +17,7 @@ const rows = ref([]);
 const isDialogOpen = ref(false)
 const isLoading = ref(true)
 
+// TODO: add logic load drinks after adding new one
 function openDialog() {
   isDialogOpen.value = true;
 }

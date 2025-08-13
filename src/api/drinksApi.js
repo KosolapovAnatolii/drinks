@@ -11,12 +11,12 @@ export const getAllDrinks = async (category) => {
   }
 };
 
-export const getDrinkById = async (id) => {
+export const getDrinkBySlug = async (slug) => {
   try {
-    const response = await axiosInstance.get(`/drinks/${id}`);
+    const response = await axiosInstance.get(`/drinks/${slug}`);
     return response.data;
   } catch (error) {
-    console.error(`Failed fetching drink with id=${id}:`, error);
+    console.error(`Failed fetching drink with slug=${slug}:`, error);
     throw error;
   }
 };
@@ -40,12 +40,15 @@ export const createDrink = async (drinkData) => {
   }
 };
 
-export const deleteDrink = async (id) => {
+// TODO: add this logic to backend
+export const deleteDrink = async (slug) => {
   try {
-    const response = await axiosInstance.delete(`/drinks/${id}`);
+    const response = await axiosInstance.delete(`/drinks/${slug}`);
     return response.data;
   } catch (error) {
-    console.error(`Failed deleting drink with id=${id}:`, error);
+    console.error(`Failed deleting drink with slug=${slug}:`, error);
     throw error;
   }
 };
+
+// TODO: add edit logic

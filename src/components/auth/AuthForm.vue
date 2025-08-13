@@ -4,6 +4,9 @@ import { useI18n } from 'vue-i18n'
 import { registerUser, loginUser } from 'src/api/authApi'
 import { useUserStore } from 'stores/user-store'
 import { useCustomLinks } from 'src/composables/useLink'
+import { useValidationRules } from 'src/composables/useValidation'
+
+const { requireFieldRule, validEmail } = useValidationRules();
 
 const { t } = useI18n()
 const userStore = useUserStore();
@@ -15,6 +18,7 @@ const userData = ref({
   email: '',
   password: '',
 })
+const errorMessage = ref('')
 
 function toggleMode() {
   isLogin.value = !isLogin.value
@@ -23,6 +27,7 @@ function toggleMode() {
 async function handleSubmit() {
   if (isLogin.value) {
     try {
+      errorMessage.value = '';
       isLoading.value = true;
       const response = await loginUser(userData.value)
       console.log('✅ User successfully logged in', response)
@@ -31,10 +36,12 @@ async function handleSubmit() {
       goToPage('home')
     } catch (err) {
       console.log(err)
+      errorMessage.value = err.response.data.error;
       isLoading.value = false;
     }
   } else {
     try {
+      errorMessage.value = '';
       isLoading.value = true;
       const response = await registerUser(userData.value);
       console.log('✅ User successfully registered:', response);
@@ -43,6 +50,7 @@ async function handleSubmit() {
       goToPage('home')
     } catch (err) {
       isLoading.value = false;
+      errorMessage.value = err.response.data.error;
       console.log(err)
     }
   }
@@ -66,6 +74,7 @@ const toggleBtnLabel = computed(() => isLogin.value ? t('auth_form.switch_regist
           v-model="userData.email"
           type="email"
           :label="t('auth_form.email')"
+          :rules="[validEmail, requireFieldRule]"
           required
         />
         <q-input
@@ -73,8 +82,12 @@ const toggleBtnLabel = computed(() => isLogin.value ? t('auth_form.switch_regist
           v-model="userData.password"
           type="password"
           :label="t('auth_form.password')"
+          :rules="[requireFieldRule]"
           required
         />
+        <span v-if="errorMessage" class="text-body1 text-red">
+          {{ errorMessage }}
+        </span>
       </q-card-section>
 
       <q-card-actions align="between">
