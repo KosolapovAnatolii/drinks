@@ -19,7 +19,7 @@ const columns = [
   { name: 'description', align: 'center', label: t('table_head.noutes'), field: 'description', sortable: false, style: 'width: 25%', },
 ]
 
-defineProps({
+const props = defineProps({
   rows: {
     type: Array,
     required: true,
@@ -31,6 +31,8 @@ defineProps({
   }
 })
 
+console.log(props.rows)
+
 </script>
 <template>
   <div class="q-pa-xs" style="overflow: auto;">
@@ -39,6 +41,7 @@ defineProps({
       :rows="rows"
       :columns="columns"
       row-key="name"
+      :pagination="{ rowsPerPage: 0 }"
     >
       <template #body-cell-img="props">
         <q-td :props="props">

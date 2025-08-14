@@ -24,8 +24,9 @@ export const getDrinkBySlug = async (slug) => {
 export const createDrink = async (drinkData) => {
   if (drinkData.photo) {
     try {
-      const imageUrl = await uploadImage(drinkData.photo)
-      drinkData.photo = imageUrl;
+      const imageData = await uploadImage(drinkData.photo)
+      drinkData.photo = imageData.url;
+      drinkData.public_id = imageData.public_id;
     } catch (error) {
       console.error('Error uplodaing photo', error);
     }
@@ -40,7 +41,6 @@ export const createDrink = async (drinkData) => {
   }
 };
 
-// TODO: add this logic to backend
 export const deleteDrink = async (slug) => {
   try {
     const response = await axiosInstance.delete(`/drinks/${slug}`);
@@ -51,4 +51,3 @@ export const deleteDrink = async (slug) => {
   }
 };
 
-// TODO: add edit logic

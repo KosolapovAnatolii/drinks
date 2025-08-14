@@ -12,8 +12,13 @@ export function useCustomLinks() {
     router.push({ name: namePage })
   }
 
+  function goBack() {
+    router.back()
+  }
+
   return {
     getCurrentRoute,
     goToPage,
+    goBack
   }
 }
