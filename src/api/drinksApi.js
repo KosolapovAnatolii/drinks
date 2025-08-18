@@ -1,5 +1,4 @@
 import axiosInstance from './axiosInstance'
-// import { uploadImage } from './cloudinaryApi';
 
 export const getAllDrinks = async (category) => {
   try {
@@ -22,22 +21,13 @@ export const getDrinkBySlug = async (slug) => {
 };
 
 export const createDrink = async (drinkData) => {
-  // if (drinkData.photo) {
-  //   try {
-  //     const imageData = await uploadImage(drinkData.photo)
-  //     drinkData.photo = imageData.url;
-  //     drinkData.public_id = imageData.public_id;
-  //   } catch (error) {
-  //     console.error('Error uplodaing photo', error);
-  //   }
-  // }
-
   try {
     const response = await axiosInstance.post(`/drinks`, drinkData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     });
+    console.log('create drink success response', response)
     return response.data;
   } catch (error) {
     console.error('Creating drink was failed:', error);

@@ -18,16 +18,14 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'reloadDrinks'])
 
 const modelValueLocal = computed({
   get: () => props.modelValue,
   set: (val) => emit('update:modelValue', val)
 })
 
-function closeDialog() {
-  emit('update:modelValue', false)
-}
+const isLoading = ref(false);
 
 const drinkData = ref({
   category: props.category,
@@ -39,7 +37,11 @@ const drinkData = ref({
   description: '',
 })
 
-function handleSubmit() {
+function closeDialog() {
+  emit('update:modelValue', false)
+}
+
+async function handleSubmit() {
   const formData = new FormData();
   formData.append('category', drinkData.value.category);
   formData.append('name', drinkData.value.name);
@@ -51,8 +53,13 @@ function handleSubmit() {
   if (drinkData.value.photo) {
     formData.append('photo', drinkData.value.photo);
   }
-  createDrink(formData)
+
+  isLoading.value = true;
+  await createDrink(formData);
+  isLoading.value = false;
+
   closeDialog()
+  emit('reloadDrinks');
 }
 </script>
 
@@ -71,6 +78,7 @@ function handleSubmit() {
             v-model="drinkData.photo"
             :label="t('drink_form.add_photo')"
             :validate="[validFileSize]"
+            accept=".jpg,.jpeg,.png,.webp"
           >
             <template v-slot:prepend>
               <q-icon name="attach_file" />
@@ -120,11 +128,13 @@ function handleSubmit() {
               color="primary"
               :label="t('buttons.submit')"
               type="submit"
+              :loading="isLoading"
             />
             <q-btn
               flat
               :label="t('buttons.cancel')"
               @click="closeDialog"
+              :disable="isLoading"
             />
           </q-card-actions>
         </q-card-section>

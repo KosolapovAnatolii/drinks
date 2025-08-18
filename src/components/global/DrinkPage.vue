@@ -17,12 +17,12 @@ const rows = ref([]);
 const isDialogOpen = ref(false)
 const isLoading = ref(true)
 
-// TODO: add logic load drinks after adding new one
 function openDialog() {
   isDialogOpen.value = true;
 }
 
-onMounted(async () => {
+async function getDrinksFromServe() {
+  console.log('getDrinksFromServer works')
   try {
     isLoading.value = true;
     const data = await getAllDrinks(pageProps.drinkCategory);
@@ -33,6 +33,10 @@ onMounted(async () => {
   } finally {
     isLoading.value = false;
   }
+}
+
+onMounted(() => {
+  getDrinksFromServe();
 });
 </script>
 
@@ -49,5 +53,6 @@ onMounted(async () => {
   <AddDrinkDialog
     :category="drinkCategory"
     v-model="isDialogOpen"
+    @reloadDrinks="getDrinksFromServe"
   />
 </template>
