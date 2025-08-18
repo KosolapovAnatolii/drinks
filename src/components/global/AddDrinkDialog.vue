@@ -40,7 +40,18 @@ const drinkData = ref({
 })
 
 function handleSubmit() {
-  createDrink(drinkData.value)
+  const formData = new FormData();
+  formData.append('category', drinkData.value.category);
+  formData.append('name', drinkData.value.name);
+  formData.append('age', drinkData.value.age);
+  formData.append('strength', drinkData.value.strength);
+  formData.append('rating', drinkData.value.rating);
+  formData.append('description', drinkData.value.description);
+
+  if (drinkData.value.photo) {
+    formData.append('photo', drinkData.value.photo);
+  }
+  createDrink(formData)
   closeDialog()
 }
 </script>
